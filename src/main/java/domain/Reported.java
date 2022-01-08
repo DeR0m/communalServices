@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.List;
-
 public class Reported {
     private String name;
 
@@ -12,8 +10,9 @@ public class Reported {
         return name;
     }
 
-    public void setName(String name) {
+    public String setName(String name) {
         this.name = name;
+        return name;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JsonParser {
-    public void parser() throws IOException, URISyntaxException {
+    public CommunalServices parser() throws IOException, URISyntaxException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         URL resource = Main.class.getClassLoader().getResource("communal_services.json");
@@ -20,11 +20,6 @@ public class JsonParser {
 
         CommunalServices communalServices = objectMapper.readValue(json, CommunalServices.class);
 
-        System.out.println(communalServices.getDescription());
-
-        for (Works works : communalServices.getWorks()) {
-            System.out.println(works);
-        }
-
+        return communalServices;
     }
 }

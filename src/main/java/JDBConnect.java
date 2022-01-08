@@ -1,9 +1,13 @@
+import domain.Members;
+import domain.Reported;
+import domain.Team;
 import domain.Works;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class JDBConnect {
 
@@ -17,23 +21,23 @@ public class JDBConnect {
         if (null != connection) {
             statement = connection.createStatement();
             statement.executeUpdate("drop table works, reported, team, members");
-            statement.executeUpdate("create table Works (works_id SERIAL NOT NULL, " +
+            statement.executeUpdate("create table IF NOT EXISTS Works  (works_id SERIAL NOT NULL, " +
                     "type CHARACTER VARYING(30) NOT NULL, " +
                     "size CHARACTER VARYING(30) NOT NULL," +
                     "preferCompleteDate CHARACTER VARYING(30) NOT NULL," +
                     "CONSTRAINT works__pk PRIMARY KEY (works_id))");
-            statement.executeUpdate("create table reported (reported_id SERIAL NOT NULL," +
+            statement.executeUpdate("create table IF NOT EXISTS reported (reported_id SERIAL NOT NULL," +
                     "works_id INTEGER," +
                     "name CHARACTER VARYING(30)," +
                     "CONSTRAINT reported__pk PRIMARY KEY (reported_id)," +
                     "CONSTRAINT reported__to__works FOREIGN KEY (works_id) REFERENCES works (works_id))");
-            statement.executeUpdate("create table Team (team_id SERIAL NOT NULL," +
+            statement.executeUpdate("create table IF NOT EXISTS Team (team_id SERIAL NOT NULL," +
                     "works_id INTEGER NOT NULL," +
                     "CONSTRAINT team__pk PRIMARY KEY (team_id)," +
                     "CONSTRAINT team__to__works FOREIGN KEY (works_id) REFERENCES works (works_id))");
-            statement.executeUpdate("create table members (members_id SERIAL NOT NULL," +
-                    "team_id INTEGER NOT NULL," +
-                    "name CHARACTER VARYING(30)," +
+            statement.executeUpdate("create table IF NOT EXISTS members (members_id SERIAL NOT NULL," +
+                    "team_id INTEGER," +
+                    "name CHARACTER VARYING," +
                     "CONSTRAINT members__pk PRIMARY KEY (members_id)," +
                     "CONSTRAINT members__to__team FOREIGN KEY (team_id) REFERENCES team (team_id))");
 
@@ -54,15 +58,11 @@ public class JDBConnect {
                 statement1.setString(1, data.getType());
                 statement1.setString(2, data.getSize());
                 statement1.setString(3, data.getPreferCompleteDate());
-
                 statement1.addBatch();
             }
             statement1.executeBatch();
 
             ResultSet key = statement1.getGeneratedKeys();
-//            while (key.next()) {
-//                System.out.println("PK: " + key.getInt(1));
-//            }
 
             for (Works data2 : jsonParser.parser().getWorks()) {
 
@@ -70,6 +70,12 @@ public class JDBConnect {
                 reported.addBatch();
             }
             reported.executeBatch();
+
+            for(Works data3 : jsonParser.parser().getWorks()){
+                members.setString(1, String.valueOf(data3.getTeam().getMembers()));
+                members.addBatch();
+                members.executeUpdate();
+            }
 
             while (key.next()) {
                 reported2.setInt(1, key.getInt(1));
@@ -83,9 +89,9 @@ public class JDBConnect {
     }
 
 
+
+
     public Connection getConnection() throws SQLException, IOException, URISyntaxException {
-
-
 
         String user = "postgres";
         String password = "123";

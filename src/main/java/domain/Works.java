@@ -1,6 +1,6 @@
 package domain;
 
-public class Works {
+public class Works{
     private String type;
     private String size;
     private String preferCompleteDate;
@@ -10,28 +10,37 @@ public class Works {
     public Works() {
     }
 
+    public Works(String type, String size, String preferCompleteDate) {
+        this.type = type;
+        this.size = size;
+        this.preferCompleteDate = preferCompleteDate;
+    }
+
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public String setType(String type) {
         this.type = type;
+        return type;
     }
 
     public String getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public String setSize(String size) {
         this.size = size;
+        return size;
     }
 
     public String getPreferCompleteDate() {
         return preferCompleteDate;
     }
 
-    public void setPreferCompleteDate(String preferCompleteDate) {
+    public String setPreferCompleteDate(String preferCompleteDate) {
         this.preferCompleteDate = preferCompleteDate;
+        return preferCompleteDate;
     }
 
     public Reported getReporter() {

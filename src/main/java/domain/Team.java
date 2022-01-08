@@ -1,10 +1,5 @@
 package domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.lang.reflect.Member;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
