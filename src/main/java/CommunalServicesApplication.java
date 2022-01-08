@@ -2,16 +2,12 @@ import domain.Members;
 import domain.Reported;
 import domain.Works;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.Scanner;
 
 public class CommunalServicesApplication{
-
-    public static Statement statement;
-    public static Connection connection;
 
     public static void main(String[] args) throws IOException, URISyntaxException, SQLException {
         StartProgram();
@@ -27,7 +23,8 @@ public class CommunalServicesApplication{
 
         System.out.println("Если вы желаете просмотреть информацию о работе - введите 1\n" +
                 "Если Вы желаете посмотреть кто является заказчиком - введите 2\n" +
-                "Если Вы желаете посмотреть информацию о бригаде - введите 3\n");
+                "Если Вы желаете посмотреть информацию о бригаде - введите 3\n" +
+                "Если Вы желаете создать работу - введите 4\n");
 
         Scanner in = new Scanner(System.in);
         System.out.println("Введите что вы желаете сделать: ");

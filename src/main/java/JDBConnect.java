@@ -1,13 +1,9 @@
-import domain.Members;
-import domain.Reported;
-import domain.Team;
 import domain.Works;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class JDBConnect {
 
@@ -87,9 +83,6 @@ public class JDBConnect {
             }
         }
     }
-
-
-
 
     public Connection getConnection() throws SQLException, IOException, URISyntaxException {
 
