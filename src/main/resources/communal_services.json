@@ -1,0 +1,113 @@
+{
+  "description": "Система Жилищно-коммунальные услуги. Квартиросъемщик отправляет Заявку, в которой указывает род работ, масштаб, и желаемое время выполнения. Диспетчер формирует соответствующую Бригаду и регистрирует её в Плане работ.",
+  "works": [
+    {
+      "type": "GAS_SUPPLY",
+      "size": "LOCAL",
+      "preferCompleteDate": "21.10.2021",
+      "reporter": {
+        "name": "Vadim"
+      },
+      "team": {
+        "members": [
+          {
+            "name": "Leonid"
+          }
+        ]
+      }
+    },
+    {
+      "type": "GAS_SUPPLY",
+      "size": "GLOBAL",
+      "preferCompleteDate": "09.09.2021",
+      "reporter": {
+        "name": "Svetlana"
+      },
+      "team": {
+        "members": [
+          {
+            "name": "Makar"
+          },
+          {
+            "name": "Galina"
+          },
+          {
+            "name": "Dana"
+          },
+          {
+            "name": "Svetlana"
+          },
+          {
+            "name": "Stepan"
+          }
+        ]
+      }
+    },
+    {
+      "type": "SEWERAGE",
+      "size": "GLOBAL",
+      "preferCompleteDate": "25.10.2021",
+      "reporter": {
+        "name": "Artyom"
+      },
+      "team": {
+        "members": [
+          {
+            "name": "Andrey"
+          },
+          {
+            "name": "Timur"
+          },
+          {
+            "name": "Arkady"
+          }
+        ]
+      }
+    },
+    {
+      "type": "ELECTRICITY",
+      "size": "GLOBAL",
+      "preferCompleteDate": "05.10.2021",
+      "reporter": {
+        "name": "Makar"
+      },
+      "team": {
+        "members": [
+          {
+            "name": "Sergey"
+          },
+          {
+            "name": "George"
+          },
+          {
+            "name": "Edward"
+          }
+        ]
+      }
+    },
+    {
+      "type": "WATER_SUPPLY",
+      "size": "GLOBAL",
+      "preferCompleteDate": "23.09.2021",
+      "reporter": {
+        "name": "Timur"
+      },
+      "team": {
+        "members": [
+          {
+            "name": "Thomas"
+          },
+          {
+            "name": "Anfisa"
+          },
+          {
+            "name": "Olga"
+          },
+          {
+            "name": "Anton"
+          }
+        ]
+      }
+    }
+  ]
+}
