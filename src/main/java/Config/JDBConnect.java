@@ -1,3 +1,5 @@
+package Config;
+
 import domain.Works;
 
 import java.io.IOException;
@@ -26,16 +28,16 @@ public class JDBConnect {
                     "works_id INTEGER," +
                     "name CHARACTER VARYING(30)," +
                     "CONSTRAINT reported__pk PRIMARY KEY (reported_id)," +
-                    "CONSTRAINT reported__to__works FOREIGN KEY (works_id) REFERENCES works (works_id))");
+                    "CONSTRAINT reported__to__works FOREIGN KEY (works_id) REFERENCES works (works_id) ON DELETE CASCADE)");
             statement.executeUpdate("create table IF NOT EXISTS Team (team_id SERIAL NOT NULL," +
                     "works_id INTEGER NOT NULL," +
                     "CONSTRAINT team__pk PRIMARY KEY (team_id)," +
-                    "CONSTRAINT team__to__works FOREIGN KEY (works_id) REFERENCES works (works_id))");
+                    "CONSTRAINT team__to__works FOREIGN KEY (works_id) REFERENCES works (works_id) ON DELETE CASCADE)");
             statement.executeUpdate("create table IF NOT EXISTS members (members_id SERIAL NOT NULL," +
                     "team_id INTEGER," +
                     "name CHARACTER VARYING," +
                     "CONSTRAINT members__pk PRIMARY KEY (members_id)," +
-                    "CONSTRAINT members__to__team FOREIGN KEY (team_id) REFERENCES team (team_id))");
+                    "CONSTRAINT members__to__team FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE)");
 
             System.out.println("Table create");
 

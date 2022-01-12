@@ -1,7 +1,8 @@
+package Config;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.tools.javac.Main;
 import domain.CommunalServices;
-import domain.Works;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
