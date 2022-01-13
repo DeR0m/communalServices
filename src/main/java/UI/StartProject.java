@@ -1,7 +1,6 @@
 package UI;
 
 import Config.JDBConnect;
-import Exception.IncorrectValueException;
 import Services.WorksServices;
 
 import java.io.IOException;
@@ -12,9 +11,9 @@ import java.util.Scanner;
 
 public class StartProject {
 
-    public void startProgram() throws SQLException, IOException, URISyntaxException, IncorrectValueException {
+    public void startProgram() throws SQLException, IOException, URISyntaxException {
 
-        int n, id, deleteNumber;
+        int number;
 
         JDBConnect jdbConnect = new JDBConnect();
         jdbConnect.createTable();
@@ -39,11 +38,11 @@ public class StartProject {
                     in.next();
                 }
 
-                n = in.nextInt();
+                number = in.nextInt();
 
-            } while (n <= 0);
+            } while (number <= 0);
 
-            switch (n) {
+            switch (number) {
                 case 1: {
                     ResultSet resultSet = JDBConnect.statement.executeQuery("select * from works");
                     while (resultSet.next()) {
@@ -77,24 +76,73 @@ public class StartProject {
                     break;
                 }
                 case 5: {
-                    Scanner findById = new Scanner(System.in);
+                    System.out.println("1 - поиск работы по Id\n" +
+                            "2 - поиск заказчика по Id\n" +
+                            "3 - поиск команды по Id\n" +
+                            "Выберите кого Вы желаете найти: ");
+                    Scanner find = new Scanner(System.in);
                     do {
-                        while (!findById.hasNextInt()) {
+                        while (!find.hasNextInt()) {
                             System.out.println("Введите число");
-                            findById.next();
+                            find.next();
                         }
 
-                        id = findById.nextInt();
+                        number = find.nextInt();
 
-                    } while (id <= 0);
-                    System.out.println("Введите id работы, информацию о которой вы желаете получить: ");
-                    id = findById.nextInt();
-                    worksServices.findById(id);
+                    } while (number <= 0);
+                    switch (number){
+                        case 1:{
+                            Scanner findById = new Scanner(System.in);
+                            System.out.println("Введите id работы, информацию о которой вы желаете получить: ");
+                            do {
+                                while (!findById.hasNextInt()) {
+                                    System.out.println("Введите число");
+                                    findById.next();
+                                }
+
+                                number = findById.nextInt();
+
+                            } while (number <= 0);
+                            worksServices.findByIdWorks(number);
+                            break;
+                        }
+                        case 2:{
+                            Scanner findById = new Scanner(System.in);
+                            System.out.println("Введите id работы, информацию о которой вы желаете получить: ");
+                            do {
+                                while (!findById.hasNextInt()) {
+                                    System.out.println("Введите число");
+                                    findById.next();
+                                }
+
+                                number = findById.nextInt();
+
+                            } while (number <= 0);
+                            worksServices.findByIdReported(number);
+                            break;
+                        }
+                        case 3:{
+                            Scanner findById = new Scanner(System.in);
+                            System.out.println("Введите id работы, информацию о которой вы желаете получить: ");
+                            do {
+                                while (!findById.hasNextInt()) {
+                                    System.out.println("Введите число");
+                                    findById.next();
+                                }
+
+                                number = findById.nextInt();
+
+                            } while (number <= 0);
+                            worksServices.findByIdMembers(number);
+                            break;
+                        }
+                    }
                     break;
                 }
                 case 6: {
                     System.out.println("1 - удалить работу по Id\n" +
-                            "2 - удалить команду по Id");
+                            "2 - удалить команду по Id\n" +
+                            "Выберите кого вы желаете удалить: \"");
                     Scanner delete = new Scanner(System.in);
                     do {
                         while (!delete.hasNextInt()) {
@@ -102,12 +150,12 @@ public class StartProject {
                             delete.next();
                         }
 
-                        deleteNumber = delete.nextInt();
+                        number = delete.nextInt();
 
-                    } while (deleteNumber <= 0);
+                    } while (number <= 0);
 
-                    System.out.println("Выберите кого вы желаете удалить: ");
-                    switch (deleteNumber) {
+
+                    switch (number) {
                         case 1: {
                             Scanner deleteById = new Scanner(System.in);
                             System.out.println("Введите id работы, которую вы желаете удалить: ");
@@ -117,10 +165,10 @@ public class StartProject {
                                     deleteById.next();
                                 }
 
-                                id = deleteById.nextInt();
+                                number = deleteById.nextInt();
 
-                            } while (id <= 0);
-                            worksServices.deleteFromIdWork(id);
+                            } while (number <= 0);
+                            worksServices.deleteFromIdWork(number);
                             break;
                         }
                         case 2: {
@@ -132,10 +180,10 @@ public class StartProject {
                                     deleteById.next();
                                 }
 
-                                id = deleteById.nextInt();
+                                number = deleteById.nextInt();
 
-                            } while (id <= 0);
-                            worksServices.deleteFromIdMembers(id);
+                            } while (number <= 0);
+                            worksServices.deleteFromIdMembers(number);
                             break;
                         }
                     }

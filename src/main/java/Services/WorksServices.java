@@ -95,15 +95,37 @@ public class WorksServices {
 
     }
 
-    public void findById(int id) throws SQLException {
+    public void findByIdWorks(int id) throws SQLException {
 
-        String findById = "select * from works where works_id = 'id'";
+        String findById = "select * from works where works_id = '"+ id +"'";
         ResultSet resultSet = JDBConnect.statement.executeQuery(findById);
         while (resultSet.next()) {
             System.out.println("id: " + resultSet.getInt("works_id"));
             System.out.println("type: " + resultSet.getString("type"));
             System.out.println("size: " + resultSet.getString("size"));
             System.out.println("prefercompletedate: " + resultSet.getString("prefercompletedate"));
+        }
+
+    }
+
+    public void findByIdReported(int id) throws SQLException {
+
+        String findById = "select * from reported where reported_id = '"+ id +"'";
+        ResultSet resultSet = JDBConnect.statement.executeQuery(findById);
+        while (resultSet.next()) {
+            System.out.println("id: " + resultSet.getInt("reported_id"));
+            System.out.println("name: " + resultSet.getString("name"));
+        }
+
+    }
+
+    public void findByIdMembers(int id) throws SQLException {
+
+        String findById = "select * from members where members_id = '"+ id +"'";
+        ResultSet resultSet = JDBConnect.statement.executeQuery(findById);
+        while (resultSet.next()) {
+            System.out.println("id: " + resultSet.getInt("members_id"));
+            System.out.println("members: " + resultSet.getString("name"));
         }
 
     }
